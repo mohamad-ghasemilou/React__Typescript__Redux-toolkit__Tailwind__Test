@@ -9,7 +9,7 @@ import {categorySlice} from "features/category-slice";
 export const store = configureStore({
     reducer: {
         [apiSlice.reducerPath]: apiSlice.reducer,
-        [categorySlice.name]: categorySlice.reducer
+        // [categorySlice.name]: categorySlice.reducer
     },
 
     middleware: (getDefaultMiddleware) => {
