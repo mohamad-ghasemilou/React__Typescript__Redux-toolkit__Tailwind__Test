@@ -1,32 +1,23 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import './App.css';
-import {useFetchCategoriesQuery} from "features/shop-api-slice";
-import {useAppDispatch} from "app/hooks";
-import {categoryReceived} from "features/category-slice";
-import {Category} from "./app/types";
-import type { EntityState } from '@reduxjs/toolkit'
+import { Routes, Route } from "react-router-dom";
+import Home from "features/home/Home";
+import Category from 'features/category/Category';
+import routes from 'app/routes'
 
 function App() {
-    const {data, isFetching} = useFetchCategoriesQuery();
-
-    const categories = Object.values(data ? data.entities : {});
-
-
-
     return (
         <div className="App">
-            {
-                isFetching
-                ? <h1>fetching data ...</h1>
-                : categories.map((cat) => {
-                    return <h3 key={cat?.id}>{cat?.name}</h3>
-                })
-            }
+            <Routes>
+                <Route path={routes.home} element={<Home />} />
+                <Route path={routes.singleCategory} element={<Category />} />
+            </Routes>
         </div>
     );
 }
 
 export default App;
+
 // const domain = 'https://pro-api.coinmarketcap.com';
 //
 // const headers = {

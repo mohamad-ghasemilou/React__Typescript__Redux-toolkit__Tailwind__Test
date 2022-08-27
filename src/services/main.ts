@@ -10,7 +10,8 @@ interface CommonHeaderProperties extends HeadersDefaults {
 }
 
 const instance = axios.create({
-    baseURL: process.env.BASE_URL,
+    // baseURL: process.env.BASE_URL,
+    baseURL: 'https://api.escuelajs.co/api/v1',
     // headers: {
     //     "Cache-Control": "public, s-maxage=10, stale-while-revalidate=59"
     // }

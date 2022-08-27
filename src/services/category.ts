@@ -4,8 +4,8 @@ import type {BaseCategory} from "app/types";
 const categoriesUrl = "/categories";
 
 const Category = {
-    getAll() {
-        return get(categoriesUrl + `?limit=10`);
+    getAll(limit: number|undefined = 10) {
+        return get(categoriesUrl + `?limit=${limit}`);
     },
 
     getById(categoryId:number) {

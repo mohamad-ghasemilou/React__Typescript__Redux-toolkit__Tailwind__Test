@@ -3,32 +3,25 @@ import {
     configureStore,
     ThunkAction,
 } from '@reduxjs/toolkit';
-import {apiSlice} from "features/shop-api-slice";
-import {categorySlice} from "features/category-slice";
 
-export const store = configureStore({
+import {categorySlice} from "features/category/category-slice";
+
+const store = configureStore({
     reducer: {
-        [apiSlice.reducerPath]: apiSlice.reducer,
-        // [categorySlice.name]: categorySlice.reducer
+        [categorySlice.name]: categorySlice.reducer
     },
 
-    middleware: (getDefaultMiddleware) => {
-        return getDefaultMiddleware().concat(apiSlice.middleware);
-    }
+    // middleware: (getDefaultMiddleware) => {
+    //     return getDefaultMiddleware().concat(apiSlice.middleware);
+    // }
 });
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
-// export type AppStore = ReturnType<typeof makeStore>;
-//
-//
-// export type AppThunk<ReturnType = void> = ThunkAction<
-//     ReturnType,
-//     AppState,
-//     unknown,
-//     Action<string>
-//     >;
+export default store
+
+// export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, Action<string>>;
+
 // export const wrapper = createWrapper<AppStore>(makeStore);
-//
 // export default store;
