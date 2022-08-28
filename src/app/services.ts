@@ -1,4 +1,14 @@
 import axios, {HeadersDefaults} from 'axios'
+import { setupCache } from 'axios-cache-adapter'
+
+//todo: put max age and base url in env
+
+const cache = setupCache({
+    maxAge: 15 * 60 * 1000,
+    exclude: {
+        query: false
+    }
+})
 
 interface CommonHeaderProperties extends HeadersDefaults {
     // 'Authorization': string;
@@ -10,24 +20,19 @@ interface CommonHeaderProperties extends HeadersDefaults {
 }
 
 const instance = axios.create({
+    adapter: cache.adapter,
     // baseURL: process.env.BASE_URL,
-    baseURL: 'https://api.escuelajs.co/api/v1',
-    // headers: {
-    //     "Cache-Control": "public, s-maxage=10, stale-while-revalidate=59"
-    // }
+    baseURL: 'https://fakestoreapi.com',
 });
 
-// instance.defaults.baseURL = process.env.BASE_URL;
-// instance.defaults.baseURL = "https://api.escuelajs.co/api/v1";
-
 // instance.defaults.headers = {
-    // "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate"
-    // 'Authorization': `Bearer authToken`,
-    // 'Content-Type': 'application/json',
-    // 'Accept': 'application/json'
-    // "Accept": "*/*",
-    // "Accept-Encoding": "gzip, deflate, br",
-    // "Accept-Language": "en-US,en;q=0.9,fa;q=0.8,ur;q=0.7",
+// "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate"
+// 'Authorization': `Bearer authToken`,
+// 'Content-Type': 'application/json',
+// 'Accept': 'application/json'
+// "Accept": "*/*",
+// "Accept-Encoding": "gzip, deflate, br",
+// "Accept-Language": "en-US,en;q=0.9,fa;q=0.8,ur;q=0.7",
 // } as CommonHeaderProperties;
 
 export const get = (url: string) => instance.get(url);

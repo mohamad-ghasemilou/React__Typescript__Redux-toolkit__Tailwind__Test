@@ -1,11 +1,14 @@
 const home = '/';
-const category = 'category';
-const singleCategory = category + '/:categoryId'
+// const category = 'category';
+// const singleCategory = category + '/:categoryName'
+const product = 'product'
+const singleProduct = product + '/:productId'
 
 const routes = {
     home,
-    category,
-    singleCategory,
+    product,
+    singleProduct
+    // singleCategory,
 };
 
 export default routes;

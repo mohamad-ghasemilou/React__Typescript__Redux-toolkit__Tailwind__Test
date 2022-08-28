@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { Routes, Route } from "react-router-dom";
 import Home from "features/home/Home";
-import Category from 'features/category/Category';
+import Product from "features/product/Product";
 import routes from 'app/routes'
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
         <div className="App">
             <Routes>
                 <Route path={routes.home} element={<Home />} />
-                <Route path={routes.singleCategory} element={<Category />} />
+                <Route path={routes.singleProduct} element={<Product />} />
             </Routes>
         </div>
     );

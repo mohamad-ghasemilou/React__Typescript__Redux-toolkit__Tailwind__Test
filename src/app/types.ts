@@ -6,21 +6,30 @@
 //     }
 // }
 
+// id:1,
+// title:'...',
+// price:'...',
+// category:'...',
+// description:'...',
+// image:'...'
+
 interface BaseProduct {
     title: string;
     price: number;
-    images: string[];
+    images: string;
     description: string;
 }
 
-export interface BaseCategory {
-    name: string;
-    image: string;
-}
+export type Category  = string
+    // name: string;
+    // image: string;
+// }
 
-export interface Category extends BaseCategory {
-    id: number;
-}
+// export interface Category extends BaseCategory {
+//     id: number;
+// }
+
+
 
 export interface Product extends BaseProduct {
     id: number;

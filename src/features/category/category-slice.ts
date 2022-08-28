@@ -5,10 +5,10 @@ import {
     createSelector
 } from '@reduxjs/toolkit';
 import type {Category} from "app/types";
-import Services from "services";
+import CategoryService from "./categoryService";
 import type {RootState} from "app/store";
 
-export const categoryAdapter = createEntityAdapter<Category>();
+// export const categoryAdapter = createEntityAdapter<Category>();
     // {
     // Assume IDs are stored in a field other than `book.id`
     // selectId: (book) => book.bookId,
@@ -16,19 +16,28 @@ export const categoryAdapter = createEntityAdapter<Category>();
     // sortComparer: (a, b) => a.title.localeCompare(b.title),
 // });
 
+const initialState : Category[] = [];
+
 export const fetchCategories = createAsyncThunk(
     'category/fetchCategories',
-    async (limit: number|undefined) => {
-        const response = await Services.Category.getAll(limit);
+    async _ => {
+        const response = await CategoryService.getAll();
         return response.data;
     }
 );
 
+
 export const categorySlice = createSlice({
     name: 'category',
-    initialState: categoryAdapter.getInitialState(),
+    initialState,
     reducers: {
-        categoryAdded: categoryAdapter.addOne,
+        setAllCategories(state, payload) {
+            // state.push(state, payload)
+            // console.log({payload})
+            // state.push(...payload)
+
+        },
+        // categoryAdded: categoryAdapter.addOne,
         // categoryReceived(state, action) {
         //     categoryAdapter.setAll(state, action.payload)
         // }
@@ -36,22 +45,21 @@ export const categorySlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(fetchCategories.fulfilled, (state, action) => {
-                // categoryReceived(action)
-                categoryAdapter.setAll(state, action.payload)
-                // state = action.payload;
+                // categorySlice.actions.setAllCategories(action.payload)
+                state.push(...action.payload)
             })
     },
 })
 
-const categorySelectors = categoryAdapter.getSelectors((state: RootState) => state.category);
+// const categorySelectors = categoryAdapter.getSelectors((state: RootState) => state.category);
 
-export const {
-    selectAll: selectCategories,
-    selectById: selectCategoryById,
-    selectEntities: selectCategoryEntities,
-    selectIds: selectCategoryIds,
-    selectTotal: selectCategoryTotal,
-} = categorySelectors;
+// export const {
+//     selectAll: selectCategories,
+//     selectById: selectCategoryById,
+//     selectEntities: selectCategoryEntities,
+//     selectIds: selectCategoryIds,
+//     selectTotal: selectCategoryTotal,
+// } = categorySelectors;
 
-export const { categoryAdded } = categorySlice.actions;
+export const { setAllCategories } = categorySlice.actions;
 

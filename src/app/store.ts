@@ -4,11 +4,13 @@ import {
     ThunkAction,
 } from '@reduxjs/toolkit';
 
+import {productSlice} from "features/product/product-slice";
 import {categorySlice} from "features/category/category-slice";
 
 const store = configureStore({
     reducer: {
-        [categorySlice.name]: categorySlice.reducer
+        [productSlice.name]: productSlice.reducer,
+        [categorySlice.name]: categorySlice.reducer,
     },
 
     // middleware: (getDefaultMiddleware) => {

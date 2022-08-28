@@ -1,14 +1,14 @@
-import {get, post, put, remove} from 'services/main';
+import {get, post, put, remove} from 'app/services';
 import type {CreateProduct} from "app/types";
 
 const productsUrl = "/products";
 
-const Product = {
+const ProductService = {
     getAll(limit: number = 10, offset: number = 0) {
         return get(productsUrl + `?limit=${limit}&offset=${offset}`);
     },
 
-    getById(productId:number) {
+    getById(productId:string|undefined) {
         return get(productsUrl + "/" + productId);
     },
 
@@ -25,4 +25,4 @@ const Product = {
     }
 };
 
-export default Product;
+export default ProductService;
