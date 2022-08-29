@@ -7,6 +7,7 @@ import {
 import type {Category} from "app/types";
 import CategoryService from "./categoryService";
 import type {RootState} from "app/store";
+import ProductService from "features/product/productService";
 
 // export const categoryAdapter = createEntityAdapter<Category>();
     // {
@@ -16,7 +17,17 @@ import type {RootState} from "app/store";
     // sortComparer: (a, b) => a.title.localeCompare(b.title),
 // });
 
-const initialState : Category[] = [];
+// interface InitialState {
+//
+// }
+//
+// const initialState : InitialState = {
+//     [a: string] : string
+// };
+
+const initialState = {
+
+};
 
 export const fetchCategories = createAsyncThunk(
     'category/fetchCategories',
@@ -26,30 +37,59 @@ export const fetchCategories = createAsyncThunk(
     }
 );
 
+export const fetchCategoryProducts = createAsyncThunk(
+    'category/fetchCategoryProducts',
+    async (categoryName: string) => {
+        const response = await ProductService.getByCategory(categoryName);
+        console.log("hgfhgf")
+        return ({name: categoryName, products:response.data});
+    }
+);
 
 export const categorySlice = createSlice({
     name: 'category',
     initialState,
     reducers: {
-        setAllCategories(state, payload) {
+        // setAllCategories(state, payload) {
             // state.push(state, payload)
             // console.log({payload})
             // state.push(...payload)
 
-        },
+        // },
         // categoryAdded: categoryAdapter.addOne,
         // categoryReceived(state, action) {
         //     categoryAdapter.setAll(state, action.payload)
         // }
     },
-    extraReducers: (builder) => {
+    extraReducers: builder => {
         builder
             .addCase(fetchCategories.fulfilled, (state, action) => {
-                // categorySlice.actions.setAllCategories(action.payload)
-                state.push(...action.payload)
+                action.payload.forEach((category:string) => {
+                    // @ts-ignore
+                    state[category] = []
+                })
+            })
+
+            .addCase(fetchCategoryProducts.fulfilled, (state, action) => {
+                const {name, products} = action.payload;
+                // @ts-ignore
+                state[name] = [...products]
+                // console.log({payload:action.payload})
+                // state[]
+                // categoryReceived(action)
+                // console.log({logFromReducer: action.payload})
+                // productAdapter.addOne(state, action.payload)
+                // state = action.payload;
             })
     },
 })
+
+// export const categoriesSelector = (state:RootState) => Object.keys(state.category);
+export const categoriesSelector = (state:RootState) => state.category;
+// @ts-ignore
+// export const categoryProductsSelector = (state:RootState, category) => state[category];
+
+// const categories = createSelector()
 
 // const categorySelectors = categoryAdapter.getSelectors((state: RootState) => state.category);
 
@@ -61,5 +101,5 @@ export const categorySlice = createSlice({
 //     selectTotal: selectCategoryTotal,
 // } = categorySelectors;
 
-export const { setAllCategories } = categorySlice.actions;
+// export const { setAllCategories } = categorySlice.actions;
 

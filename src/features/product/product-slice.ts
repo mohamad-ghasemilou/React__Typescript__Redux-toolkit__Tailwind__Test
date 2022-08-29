@@ -5,8 +5,8 @@ import {
     // createSelector
 } from '@reduxjs/toolkit';
 import type {Product} from "app/types";
-import ProductService from "./productService";
 import type {RootState} from "app/store";
+import ProductService from "./productService";
 
 export const productAdapter = createEntityAdapter<Product>();
     // {
@@ -44,16 +44,12 @@ export const productSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(fetchProducts.fulfilled, (state, action) => {
-                // categoryReceived(action)
                 productAdapter.setAll(state, action.payload)
-                // state = action.payload;
-            })
-            .addCase(fetchProduct.fulfilled, (state, action) => {
-                // categoryReceived(action)
-                productAdapter.addOne(state, action.payload)
-                // state = action.payload;
             })
 
+            .addCase(fetchProduct.fulfilled, (state, action) => {
+                productAdapter.addOne(state, action.payload)
+            })
     },
 })
 

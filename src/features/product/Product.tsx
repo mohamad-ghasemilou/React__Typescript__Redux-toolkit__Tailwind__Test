@@ -5,16 +5,15 @@ import {selectProductById, fetchProduct} from 'features/product/product-slice';
 import {useAppSelector, useAppDispatch} from "app/hooks";
 
 
-function Category() {
+function Product() {
     const dispatch = useAppDispatch();
     const { productId } = useParams();
     const product = useAppSelector(state => selectProductById(state, productId ?? ''))
     console.log({product})
 
     useEffect(() => {
-        !product && dispatch(fetchProduct(productId))
+        dispatch(fetchProduct(productId))
     })
-
 
     return (
         <div>
@@ -27,4 +26,4 @@ function Category() {
     );
 }
 
-export default Category;
+export default Product;

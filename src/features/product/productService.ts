@@ -4,12 +4,16 @@ import type {CreateProduct} from "app/types";
 const productsUrl = "/products";
 
 const ProductService = {
-    getAll(limit: number = 10, offset: number = 0) {
+    getAll(limit: number = 20, offset: number = 0) {
         return get(productsUrl + `?limit=${limit}&offset=${offset}`);
     },
 
     getById(productId:string|undefined) {
         return get(productsUrl + "/" + productId);
+    },
+
+    getByCategory(categoryName:string) {
+        return get(productsUrl + '/category/' + categoryName)
     },
 
     create(data: CreateProduct) {
