@@ -16,20 +16,9 @@
 interface BaseProduct {
     title: string;
     price: number;
-    images: string;
+    image: string;
     description: string;
 }
-
-export type Category  = string
-    // name: string;
-    // image: string;
-// }
-
-// export interface Category extends BaseCategory {
-//     id: number;
-// }
-
-
 
 export interface Product extends BaseProduct {
     id: number;
@@ -39,3 +28,13 @@ export interface Product extends BaseProduct {
 export interface CreateProduct extends BaseProduct {
     categoryId: number;
 }
+
+//Category
+export type Category  = string
+// name: string;
+// image: string;
+// }
+
+// export interface Category extends BaseCategory {
+//     id: number;
+// }

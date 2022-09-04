@@ -6,7 +6,7 @@ import {
 } from '@reduxjs/toolkit';
 import type {Product} from "app/types";
 import type {RootState} from "app/store";
-import ProductService from "./productService";
+import ProductService from "features/product/product-service";
 
 export const productAdapter = createEntityAdapter<Product>();
     // {

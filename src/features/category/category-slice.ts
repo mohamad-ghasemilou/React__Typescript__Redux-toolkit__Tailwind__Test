@@ -4,10 +4,10 @@ import {
     createAsyncThunk,
     createSelector
 } from '@reduxjs/toolkit';
-import type {Category} from "app/types";
-import CategoryService from "./categoryService";
+import type {Category, Product} from "app/types";
+import CategoryService from "features/category/category-service";
 import type {RootState} from "app/store";
-import ProductService from "features/product/productService";
+import ProductService from "features/product/product-service";
 
 // export const categoryAdapter = createEntityAdapter<Category>();
     // {
@@ -25,9 +25,7 @@ import ProductService from "features/product/productService";
 //     [a: string] : string
 // };
 
-const initialState = {
-
-};
+const initialState : {[name:string]: Product[]} = {};
 
 export const fetchCategories = createAsyncThunk(
     'category/fetchCategories',
@@ -41,7 +39,6 @@ export const fetchCategoryProducts = createAsyncThunk(
     'category/fetchCategoryProducts',
     async (categoryName: string) => {
         const response = await ProductService.getByCategory(categoryName);
-        console.log("hgfhgf")
         return ({name: categoryName, products:response.data});
     }
 );
@@ -65,14 +62,12 @@ export const categorySlice = createSlice({
         builder
             .addCase(fetchCategories.fulfilled, (state, action) => {
                 action.payload.forEach((category:string) => {
-                    // @ts-ignore
                     state[category] = []
                 })
             })
 
             .addCase(fetchCategoryProducts.fulfilled, (state, action) => {
                 const {name, products} = action.payload;
-                // @ts-ignore
                 state[name] = [...products]
                 // console.log({payload:action.payload})
                 // state[]
@@ -86,7 +81,7 @@ export const categorySlice = createSlice({
 
 // export const categoriesSelector = (state:RootState) => Object.keys(state.category);
 export const categoriesSelector = (state:RootState) => state.category;
-// @ts-ignore
+
 // export const categoryProductsSelector = (state:RootState, category) => state[category];
 
 // const categories = createSelector()

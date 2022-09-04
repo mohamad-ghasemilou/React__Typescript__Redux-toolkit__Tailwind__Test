@@ -1,16 +1,18 @@
-import React from 'react';
 import './App.css';
+import routes from 'app/routes';
 import { Routes, Route } from "react-router-dom";
-import Home from "features/home/Home";
-import Product from "features/product/Product";
-import routes from 'app/routes'
+import HomePage from "features/home/home-page";
+import ProductPage from "features/product/product-page";
+import Header from "features/header/header";
+
 
 function App() {
     return (
         <div className="App">
+            <Header/>
             <Routes>
-                <Route path={routes.home} element={<Home />} />
-                <Route path={routes.singleProduct} element={<Product />} />
+                <Route path={routes.home} element={<HomePage/>} />
+                <Route path={routes.singleProduct} element={<ProductPage />} />
             </Routes>
         </div>
     );

@@ -1,0 +1,31 @@
+.truncate1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+    overflow: hidden;
+    hyphens: auto;
+    text-align: left;
+}
+
+.truncate3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+    overflow: hidden;
+    hyphens: auto;
+    text-align: left;
+}
+
+
+/*// Automatically use "word-break: break-all" for single-lines*/
+/*// (https://css-tricks.com/css-switch-case-conditions)*/
+/*--is-single-line: 1 - Clamp(0, Calc(var(--line-clamp) - 1), var(--line-clamp));*/
+    /*--delay: Calc(-1s * (1 - 1));*/
+    /*animation: states 1s var(--delay) paused;*/
+
+/*@keyframes states {*/
+/*    0% { word-break: break-all; }*/
+/*}*/
+
