@@ -1,7 +1,13 @@
+/** @jsxImportSource @emotion/react */
+import routes from "app/routes";
+import {Link} from "react-router-dom";
+import tw from 'twin.macro';
+// import {sizes} from "app/variables";
+
 function Header() {
     return (
-        <div className={styles.container}>
-            header
+        <div css={styles.container}>
+            <Link to={routes.home}>go to home</Link>
         </div>
     );
 }
@@ -9,5 +15,5 @@ function Header() {
 export default Header;
 
 const styles = {
-    container: `h-20 bg-red-700 sticky top-0`
+    container: tw`flex h-20 bg-red-700 sticky top-0`
 }

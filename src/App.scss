@@ -19,13 +19,3 @@
 }
 
 
-/*// Automatically use "word-break: break-all" for single-lines*/
-/*// (https://css-tricks.com/css-switch-case-conditions)*/
-/*--is-single-line: 1 - Clamp(0, Calc(var(--line-clamp) - 1), var(--line-clamp));*/
-    /*--delay: Calc(-1s * (1 - 1));*/
-    /*animation: states 1s var(--delay) paused;*/
-
-/*@keyframes states {*/
-/*    0% { word-break: break-all; }*/
-/*}*/
-
