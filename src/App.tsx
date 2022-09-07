@@ -22,7 +22,7 @@ function App() {
 export default App;
 
 const styles = {
-    main: `container px-16 py-8`
+    main: `container`
 };
 
 // const domain = 'https://pro-api.coinmarketcap.com';
@@ -32,5 +32,3 @@ const styles = {
 //   "Accept-Encoding": "deflate, gzip",
 //   "X-CMC_PRO_API_KEY": "2dbbca98-8fdc-4242-82e5-ba13a867ea19"
 // };
-
-//todo: app css mixin

@@ -1,4 +1,6 @@
+/** @jsxImportSource @emotion/react */
 import {useState, useEffect} from 'react';
+import tw from 'twin.macro';
 import {useAppDispatch, useAppSelector} from "app/hooks";
 import {
     fetchCategories,
@@ -8,6 +10,8 @@ import {
 import {fetchProducts, selectProducts} from "features/product/product-slice";
 import Categories from 'features/category/categories'
 import Products from "features/product/products";
+
+
 
 function HomePage() {
     const dispatch = useAppDispatch();
@@ -39,7 +43,7 @@ function HomePage() {
     }
 
     return (
-        <div>
+        <div css={styles.container}>
             {/*<Link to="category">category</Link>*/}
             {/*<h1 className="text-3xl font-bold underline">*/}
             {/*    Hello world!*/}
@@ -59,3 +63,7 @@ function HomePage() {
 }
 
 export default HomePage;
+
+const styles = {
+    container: tw`container flex`
+}

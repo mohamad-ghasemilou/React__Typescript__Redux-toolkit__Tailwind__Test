@@ -1,21 +1,17 @@
-.truncate1 {
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    word-break: break-all;
-    overflow: hidden;
-    hyphens: auto;
-    text-align: left;
+$lines: 5;
+
+@mixin truncate {
+    @for $i from 1 through $lines {
+        .truncate#{$i} {
+            display: -webkit-box;
+            -webkit-line-clamp: $i;
+            -webkit-box-orient: vertical;
+            word-break: break-all;
+            overflow: hidden;
+            hyphens: auto;
+            text-align: left;
+        }
+    }
 }
 
-.truncate3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    word-break: break-all;
-    overflow: hidden;
-    hyphens: auto;
-    text-align: left;
-}
-
-
+@include truncate;
