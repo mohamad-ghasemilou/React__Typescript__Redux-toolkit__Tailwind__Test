@@ -4,20 +4,18 @@ import tw from 'twin.macro';
 import {useAppDispatch, useAppSelector} from "app/hooks";
 import {
     fetchCategories,
-    fetchCategoryProducts,
     categoriesSelector,
+    selectedCategorySelector,
 } from 'features/category/category-slice';
 import {fetchProducts, selectProducts} from "features/product/product-slice";
-import Categories from 'features/category/categories'
-import Products from "features/product/products";
-
+import ProductCard from "../product/product-card";
 
 
 function HomePage() {
     const dispatch = useAppDispatch();
     const products = useAppSelector(selectProducts);
     const categories = useAppSelector(categoriesSelector);
-    const [selectedCategory, setSelectedCategory] = useState<string|null>(null);
+    const selectedCategory = useAppSelector(selectedCategorySelector);
 
     function addOne() {
         // dispatch(categoryAdded({
@@ -32,32 +30,20 @@ function HomePage() {
         dispatch(fetchCategories());
     }, [])
 
-    function getCategoryProducts(name: string) {
-        if (name === "All") {
-            setSelectedCategory(null)
-            return
-        }
+    const list = selectedCategory
+        ? categories[selectedCategory]
+        : products;
 
-        dispatch(fetchCategoryProducts(name))
-        setSelectedCategory(name)
-    }
+    // console.log({selectedCategory})
+    // console.log({categories})
 
     return (
         <div css={styles.container}>
-            {/*<Link to="category">category</Link>*/}
-            {/*<h1 className="text-3xl font-bold underline">*/}
-            {/*    Hello world!*/}
-            {/*</h1>*/}
-            {/*<button onClick={addOne}>*/}
-            {/*    add one category*/}
-            {/*</button>*/}
-
-            <Categories list={Object.keys(categories)} getCategoryProducts={getCategoryProducts}/>
-
-            <Products list={selectedCategory
-                    ? categories[selectedCategory]
-                    : products}
-            />
+            <div className="flex flex-wrap gap-8">
+                {
+                    list.map(product => <ProductCard key={product.id} product={product}/>)
+                }
+            </div>
         </div>
     );
 }
@@ -65,5 +51,5 @@ function HomePage() {
 export default HomePage;
 
 const styles = {
-    container: tw`container flex`
+    container: tw`container flex justify-center bg-red-500`
 }

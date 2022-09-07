@@ -25,7 +25,13 @@ import ProductService from "features/product/product-service";
 //     [a: string] : string
 // };
 
-const initialState : {[name:string]: Product[]} = {};
+const initialState : {
+    all: {[name:string]: Product[]},
+    selected: Category
+} = {
+    all: {},
+    selected: ""
+};
 
 export const fetchCategories = createAsyncThunk(
     'category/fetchCategories',
@@ -47,6 +53,10 @@ export const categorySlice = createSlice({
     name: 'category',
     initialState,
     reducers: {
+        setSelectedCategory(state, action) {
+            console.log({state, action})
+            state.selected = action.payload
+        }
         // setAllCategories(state, payload) {
             // state.push(state, payload)
             // console.log({payload})
@@ -62,13 +72,13 @@ export const categorySlice = createSlice({
         builder
             .addCase(fetchCategories.fulfilled, (state, action) => {
                 action.payload.forEach((category:string) => {
-                    state[category] = []
+                    state.all[category] = []
                 })
             })
 
             .addCase(fetchCategoryProducts.fulfilled, (state, action) => {
                 const {name, products} = action.payload;
-                state[name] = [...products]
+                state.all[name] = [...products]
                 // console.log({payload:action.payload})
                 // state[]
                 // categoryReceived(action)
@@ -80,8 +90,8 @@ export const categorySlice = createSlice({
 })
 
 // export const categoriesSelector = (state:RootState) => Object.keys(state.category);
-export const categoriesSelector = (state:RootState) => state.category;
-
+export const categoriesSelector = (state:RootState) => state.category.all;
+export const selectedCategorySelector = (state:RootState) => state.category.selected;
 // export const categoryProductsSelector = (state:RootState, category) => state[category];
 
 // const categories = createSelector()
@@ -96,5 +106,5 @@ export const categoriesSelector = (state:RootState) => state.category;
 //     selectTotal: selectCategoryTotal,
 // } = categorySelectors;
 
-// export const { setAllCategories } = categorySlice.actions;
+export const { setSelectedCategory } = categorySlice.actions;
 

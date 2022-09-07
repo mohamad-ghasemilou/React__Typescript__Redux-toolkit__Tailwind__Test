@@ -3,18 +3,17 @@ import routes from 'app/routes';
 import { Routes, Route } from "react-router-dom";
 import HomePage from "features/home/home-page";
 import ProductPage from "features/product/product-page";
-import Header from "features/header/header";
+import Layout from "features/layout/layout";
 
 function App() {
     return (
         <div className="App">
-            <Header/>
-            <div className={styles.main}>
+            <Layout>
                 <Routes>
                     <Route path={routes.home} element={<HomePage/>} />
                     <Route path={routes.singleProduct} element={<ProductPage />} />
                 </Routes>
-            </div>
+            </Layout>
         </div>
     );
 }
@@ -22,7 +21,7 @@ function App() {
 export default App;
 
 const styles = {
-    main: `container`
+    main: ``
 };
 
 // const domain = 'https://pro-api.coinmarketcap.com';

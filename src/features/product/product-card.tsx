@@ -38,5 +38,5 @@ const styles = {
     content: `flex flex-col justify-between p-4 leading-normal`,
     title: `mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white truncate1`,
     description: `mb-3 font-normal text-gray-700 dark:text-gray-400 truncate3`,
-    price: `text-xl font-bold text-gray-900 dark:text-white`
+    price: `text-xl font-bold text-gray-900 dark:text-white text-end`
 }
