@@ -20,8 +20,8 @@ function ProductPage() {
             </div>
             <div className={styles.details}>
                 <h1 className={styles.title}>{product?.title}</h1>
-                {/*<h2 className={styles.category}>{product?.category}</h2>*/}
-                <h2 className={styles.description}>{product?.description}</h2>
+                <h2 className={styles.category}>{product?.category}</h2>
+                {/*<h2 className={styles.description}>{product?.description}</h2>*/}
                 <div className="flex justify-between">
                     <h2 className={styles.price}>€ {product?.price}</h2>
                     <AddToCart/>

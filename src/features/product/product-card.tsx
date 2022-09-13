@@ -32,7 +32,7 @@ function ProductCard({product}: Props) {
 export default ProductCard;
 
 const styles = {
-    product: `max-w-md h-60`,
+    product: `w-1/4 h-60`,
     wrapper: `h-full p-4 flex flex-col bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700`,
     image: `object-contain h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg`,
     content: `flex flex-col justify-between p-4 leading-normal`,

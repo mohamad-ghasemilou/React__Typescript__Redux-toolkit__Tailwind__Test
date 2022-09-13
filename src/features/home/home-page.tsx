@@ -1,15 +1,8 @@
-/** @jsxImportSource @emotion/react */
-import {useState, useEffect} from 'react';
-import tw from 'twin.macro';
+import {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "app/hooks";
-import {
-    fetchCategories,
-    categoriesSelector,
-    selectedCategorySelector,
-} from 'features/category/category-slice';
+import {fetchCategories, categoriesSelector, selectedCategorySelector,} from 'features/category/category-slice';
 import {fetchProducts, selectProducts} from "features/product/product-slice";
-import ProductCard from "../product/product-card";
-
+import ProductCard from "features/product/product-card";
 
 function HomePage() {
     const dispatch = useAppDispatch();
@@ -38,8 +31,8 @@ function HomePage() {
     // console.log({categories})
 
     return (
-        <div css={styles.container}>
-            <div className="flex flex-wrap gap-8">
+        <div className={styles.container}>
+            <div className="flex flex-wrap justify-center gap-8 bg-yellow-400">
                 {
                     list.map(product => <ProductCard key={product.id} product={product}/>)
                 }
@@ -51,5 +44,5 @@ function HomePage() {
 export default HomePage;
 
 const styles = {
-    container: tw`container flex justify-center bg-red-500`
+    container: `container`
 }

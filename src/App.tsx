@@ -7,22 +7,16 @@ import Layout from "features/layout/layout";
 
 function App() {
     return (
-        <div className="App">
-            <Layout>
-                <Routes>
-                    <Route path={routes.home} element={<HomePage/>} />
-                    <Route path={routes.singleProduct} element={<ProductPage />} />
-                </Routes>
-            </Layout>
-        </div>
+        <Layout>
+            <Routes>
+                <Route path={routes.home} element={<HomePage/>} />
+                <Route path={routes.singleProduct} element={<ProductPage/>} />
+            </Routes>
+        </Layout>
     );
 }
 
 export default App;
-
-const styles = {
-    main: ``
-};
 
 // const domain = 'https://pro-api.coinmarketcap.com';
 //

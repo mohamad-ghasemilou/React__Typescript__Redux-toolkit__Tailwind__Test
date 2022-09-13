@@ -1,35 +1,35 @@
-/** @jsxImportSource @emotion/react */
 import {Category as CategoryType} from "app/types";
-import tw from 'twin.macro'
-import {useAppDispatch, useAppSelector} from "app/hooks";
-import {categoriesSelector, setSelectedCategory, fetchCategoryProducts} from "./category-slice";
+import {useAppDispatch, useAppSelector, useQuery} from "app/hooks";
+import {categoriesSelector, setSelectedCategory, fetchCategoryProducts} from "features/category/category-slice";
+import Category from "features/category/category";
+import {useEffect} from "react";
+
 
 function Categories() {
     const dispatch = useAppDispatch();
     const categories = useAppSelector(categoriesSelector);
+    const categoryQuery = useQuery('category')
 
-    function getCategoryProducts(category: CategoryType) {
-        if (category === "All") {
-            dispatch(setSelectedCategory(""))
-            return
+    useEffect(() => {
+        switch (categoryQuery) {
+            case null:
+                return;
+            case "All":
+                dispatch(setSelectedCategory(""))
+                break
+            default:
+                dispatch(setSelectedCategory(categoryQuery))
+                dispatch(fetchCategoryProducts(categoryQuery))
+                break
         }
-
-        dispatch(setSelectedCategory(category))
-        dispatch(fetchCategoryProducts(category))
-    }
+    },[categoryQuery])
 
     return (
-        <div css={styles.container}>
+        <div className={styles.container}>
             <h1>categories</h1>
-            <button type="button" onClick={_=>getCategoryProducts("All")} className="border m-2 p-2">
-                <h3>All</h3>
-            </button>
+            <Category name="All" isSelected={categoryQuery === "All" || !categoryQuery}/>
             {
-                Object.keys(categories).map((category:CategoryType) =>
-                    <button  key={category} type="button" onClick={_=>getCategoryProducts(category)} className="border m-2 p-2">
-                        <h3>{category}</h3>
-                    </button>
-                )
+                Object.keys(categories).map((category: CategoryType) => <Category key={category} name={category} isSelected={category === categoryQuery}/>)
             }
         </div>
     )
@@ -37,8 +37,8 @@ function Categories() {
 
 export default Categories;
 
-const styles = {
-    container: tw`w-40`
-}
 
+const styles = {
+    container: `flex flex-col text-center fixed`
+}
 

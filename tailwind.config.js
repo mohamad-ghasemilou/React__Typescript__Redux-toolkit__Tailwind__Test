@@ -3,9 +3,11 @@ module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
-  darkMode: 'class',
   theme: {
-    extend: {}
+    extend: {},
   },
-  plugins: []
+  darkMode: 'class',
+  plugins: [
+    require('postcss-import'),
+  ],
 }

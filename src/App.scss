@@ -1,7 +1,5 @@
-$lines: 5;
-
 @mixin truncate {
-    @for $i from 1 through $lines {
+    @for $i from 1 through 5 {
         .truncate#{$i} {
             display: -webkit-box;
             -webkit-line-clamp: $i;

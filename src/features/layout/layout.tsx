@@ -1,22 +1,26 @@
-/** @jsxImportSource @emotion/react */
 import {ReactNode} from 'react';
-import Sidebar from "./sidebar";
-import tw from 'twin.macro';
+import {useLocation} from "react-router";
 import Header from "features/header/header";
+import Sidebar from "features/layout/sidebar";
+import routes from "app/routes";
 
 interface Props {
     children: ReactNode
 }
 
 function Layout({children}: Props) {
+    const location = useLocation();
+    const showSidebar = location.pathname === routes.home
+
     return (
         <>
             <Header/>
-            <div css={styles.main}>
-                <Sidebar />
-                {children}
-            </div>
-
+            <main className={styles.wrapper}>
+                <Sidebar visible={showSidebar} />
+                <div className={styles.main}>
+                    {children}
+                </div>
+            </main>
         </>
     );
 }
@@ -24,5 +28,6 @@ function Layout({children}: Props) {
 export default Layout;
 
 const styles = {
-    main: tw`flex bg-blue-400`
+    wrapper: `flex`,
+    main: `container py-16 px-8`
 }
