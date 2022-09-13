@@ -4,7 +4,6 @@ import {categoriesSelector, setSelectedCategory, fetchCategoryProducts} from "fe
 import Category from "features/category/category";
 import {useEffect} from "react";
 
-
 function Categories() {
     const dispatch = useAppDispatch();
     const categories = useAppSelector(categoriesSelector);
@@ -13,7 +12,7 @@ function Categories() {
     useEffect(() => {
         switch (categoryQuery) {
             case null:
-                return;
+                break
             case "All":
                 dispatch(setSelectedCategory(""))
                 break

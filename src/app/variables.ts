@@ -1,3 +1,3 @@
 export const sizes = {
-    headerHeight: 20
+    headerHeight: '20'
 }

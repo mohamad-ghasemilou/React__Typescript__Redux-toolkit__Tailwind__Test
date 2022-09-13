@@ -13,7 +13,7 @@ function Category({name, isSelected}:Props) {
         [styles.selected]: isSelected && styles.selected
 
     })
-    return <Link to={routes.home + `?category=${name}`} key={name} className={classes}>
+    return <Link to={routes.home + `?category=${name}`} className={classes}>
         <h3>{name}</h3>
     </Link>
 }
