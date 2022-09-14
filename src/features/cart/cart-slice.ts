@@ -1,13 +1,12 @@
 import {createSelector, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import type {ProductId} from "app/types";
-import {RootState} from "app/store";
 
-const initialState : {
-    [id:ProductId]: number
-} = {}
+
+const name = 'cart';
+const initialState : {[id:ProductId]: number} = {};
 
 export const cartSlice = createSlice({
-    name: 'cart',
+    name,
     initialState,
     reducers: {
         addToCart(state, action: PayloadAction<ProductId>) {
@@ -23,12 +22,16 @@ export const cartSlice = createSlice({
     }
 })
 
+
+////////////////////// A C T I O N S
 export const { addToCart, removeFromCart } = cartSlice.actions;
 
+
+////////////////////// S E L E C T O R S
 export const selectProductsCartQuantity = createSelector(
     [
-        store => store.cart,
-        (state, productId) => productId
+        store => store[name],
+        (store, productId) => productId
     ],
     (cart, productId) => cart[productId]
 )

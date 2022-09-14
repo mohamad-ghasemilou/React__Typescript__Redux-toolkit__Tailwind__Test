@@ -1,13 +1,15 @@
 const home = '/';
 // const category = 'category';
 // const singleCategory = category + '/:categoryName'
-const product = 'product'
-const singleProduct = product + '/:productId'
+const product = 'product';
+const singleProduct = product + '/:productId';
+const cart = 'cart';
 
 const routes = {
     home,
     product,
-    singleProduct
+    singleProduct,
+    cart
     // singleCategory,
 };
 
@@ -18,7 +20,12 @@ export function homeRoute(query?:string):string {
 }
 
 export function productRoute(id:number):string {
-    return routes.product + '/' + id
+    return routes.product + '/' + id;
 }
+
+export function cartRoute():string {
+    return routes.cart;
+}
+
 
 
