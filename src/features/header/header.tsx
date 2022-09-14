@@ -13,5 +13,6 @@ function Header() {
 export default Header;
 
 const styles = {
-    container: `flex h-${sizes.headerHeight} bg-red-700 sticky top-0`
+    container: `flex h-20 bg-red-700 sticky top-0`
 }
+//todo: make height dynamic

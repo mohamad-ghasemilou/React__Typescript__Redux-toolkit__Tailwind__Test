@@ -1,6 +1,4 @@
 import Categories from 'features/category/categories';
-import {useSearchParams} from "react-router-dom";
-import {useQuery} from "app/hooks";
 
 interface Props {
     visible: boolean

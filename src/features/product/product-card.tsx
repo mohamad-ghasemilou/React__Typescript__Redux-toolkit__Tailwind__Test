@@ -1,6 +1,6 @@
 import {Product} from "app/types";
 import {Link} from "react-router-dom";
-import routes from "app/routes";
+import {productRoute} from "app/routes";
 
 interface Props {
     product: Product
@@ -10,7 +10,7 @@ function ProductCard({product}: Props) {
     const {id, title, category, description, image, price} = product;
 
     return (
-        <Link to={routes.product + '/' + id} className={styles.product}>
+        <Link to={productRoute(id)} className={styles.product}>
             <div className={styles.wrapper}>
                 <img className={styles.image} src={image} alt=""/>
                 <div className={styles.content}>

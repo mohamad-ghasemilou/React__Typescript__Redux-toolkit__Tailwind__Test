@@ -3,6 +3,8 @@ import {useParams} from 'react-router-dom'
 import {useAppSelector, useAppDispatch} from 'app/hooks'
 import {selectProductById, fetchProduct} from 'features/product/product-slice'
 import {sizes} from "app/variables";
+import {homeRoute} from "app/routes";
+import {Link} from "react-router-dom";
 
 function ProductPage() {
     const dispatch = useAppDispatch()
@@ -11,7 +13,7 @@ function ProductPage() {
 
     useEffect(() => {
         dispatch(fetchProduct(productId))
-    })
+    },[])
 
     return (
         <div className={styles.container}>
@@ -20,8 +22,10 @@ function ProductPage() {
             </div>
             <div className={styles.details}>
                 <h1 className={styles.title}>{product?.title}</h1>
-                <h2 className={styles.category}>{product?.category}</h2>
-                {/*<h2 className={styles.description}>{product?.description}</h2>*/}
+                <div className={styles.wrapper}>
+                    <h2 className={styles.description}>{product?.description}</h2>
+                    <Link to={homeRoute(product?.category)} className={styles.category}>#{product?.category}</Link>
+                </div>
                 <div className="flex justify-between">
                     <h2 className={styles.price}>€ {product?.price}</h2>
                     <AddToCart/>
@@ -36,11 +40,12 @@ export default ProductPage;
 const styles = {
     container: `flex max-h-full max-w-full`,
     title: `text-3xl mb-40`,
+    wrapper: `mb-40`,
+    description: `text-lg mb-6`,
     category: `text-xl`,
-    description: `text-lg mb-40`,
     price: `text-3xl`,
     image: `w-1/2 bg-red-300 max-h-full`,
-    details: `w-1/2  bg-blue-300`,
+    details: `w-1/2`,
     addToCart: `w-40 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 
                 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 
                 dark:focus:ring-blue-800`,
@@ -70,3 +75,4 @@ function AddToCart() {
         </div>
         : <button type="button" className={styles.addToCart} onPointerDown={showCount}>Add to cart</button>
 }
+//todo: set height based on sizes.headerHeight
