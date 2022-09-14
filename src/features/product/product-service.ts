@@ -1,5 +1,5 @@
 import {get, post, put, remove} from 'app/services';
-import type {CreateProduct} from "app/types";
+import type {CreateProduct, ProductId} from "app/types";
 
 const productsUrl = "/products";
 
@@ -8,7 +8,7 @@ const ProductService = {
         return get(productsUrl + `?limit=${limit}&offset=${offset}`);
     },
 
-    getById(productId:string|undefined) {
+    getById(productId:ProductId) {
         return get(productsUrl + "/" + productId);
     },
 

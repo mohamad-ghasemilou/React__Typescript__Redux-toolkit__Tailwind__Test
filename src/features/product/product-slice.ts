@@ -4,7 +4,7 @@ import {
     createAsyncThunk,
     // createSelector
 } from '@reduxjs/toolkit';
-import type {Product} from "app/types";
+import type {Product, ProductId} from "app/types";
 import type {RootState} from "app/store";
 import ProductService from "features/product/product-service";
 
@@ -26,7 +26,7 @@ export const fetchProducts = createAsyncThunk(
 
 export const fetchProduct = createAsyncThunk(
     'product/fetchProduct',
-    async (productId: string|undefined) => {
+    async (productId: ProductId) => {
         const response = await ProductService.getById(productId);
         return response.data;
     }
@@ -36,7 +36,7 @@ export const productSlice = createSlice({
     name: 'product',
     initialState: productAdapter.getInitialState(),
     reducers: {
-        productAdded: productAdapter.addOne,
+        // productAdded: productAdapter.addOne,
         // categoryReceived(state, action) {
         //     categoryAdapter.setAll(state, action.payload)
         // }
@@ -63,5 +63,5 @@ export const {
     selectTotal: selectProductTotal,
 } = productSelectors;
 
-export const { productAdded } = productSlice.actions;
+// export const { productAdded } = productSlice.actions;
 

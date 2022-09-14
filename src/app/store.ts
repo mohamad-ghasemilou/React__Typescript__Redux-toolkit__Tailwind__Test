@@ -6,11 +6,13 @@ import {
 
 import {productSlice} from "features/product/product-slice";
 import {categorySlice} from "features/category/category-slice";
+import {cartSlice} from "features/cart/cart-slice";
 
 const store = configureStore({
     reducer: {
         [productSlice.name]: productSlice.reducer,
         [categorySlice.name]: categorySlice.reducer,
+        [cartSlice.name]: cartSlice.reducer
     },
 
     // middleware: (getDefaultMiddleware) => {

@@ -20,8 +20,10 @@ interface BaseProduct {
     description: string;
 }
 
+export type ProductId = number;
+
 export interface Product extends BaseProduct {
-    id: number;
+    id: ProductId;
     category: Category;
 }
 

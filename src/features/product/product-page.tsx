@@ -2,17 +2,18 @@ import {useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import {useAppSelector, useAppDispatch} from 'app/hooks'
 import {selectProductById, fetchProduct} from 'features/product/product-slice'
+import AddToCart from "features/cart/add-to-cart";
 import {sizes} from "app/variables";
 import {homeRoute} from "app/routes";
 import {Link} from "react-router-dom";
 
 function ProductPage() {
     const dispatch = useAppDispatch()
-    const {productId} = useParams()
+    const {productId = 0} = useParams()
     const product = useAppSelector(state => selectProductById(state, productId ?? ''))
 
     useEffect(() => {
-        dispatch(fetchProduct(productId))
+        dispatch(fetchProduct(Number(productId)))
     },[])
 
     return (
@@ -28,7 +29,7 @@ function ProductPage() {
                 </div>
                 <div className="flex justify-between">
                     <h2 className={styles.price}>€ {product?.price}</h2>
-                    <AddToCart/>
+                    <AddToCart productId={Number(productId)}/>
                 </div>
             </div>
         </div>
@@ -52,27 +53,4 @@ const styles = {
     count: `w-40 flex`
 }
 
-function AddToCart() {
-    const [count, setCount] = useState(0)
-
-    function showCount() {
-        setCount(1)
-    }
-
-    function addOne() {
-        setCount(count => count + 1)
-    }
-
-    function removeOne() {
-        count > 0 && setCount(count => count - 1)
-    }
-
-    return count
-        ? <div className={styles.count}>
-            <button type="button" onPointerDown={removeOne}>-</button>
-            <span>{count}</span>
-            <button type="button" onPointerDown={addOne}>+</button>
-        </div>
-        : <button type="button" className={styles.addToCart} onPointerDown={showCount}>Add to cart</button>
-}
 //todo: set height based on sizes.headerHeight
