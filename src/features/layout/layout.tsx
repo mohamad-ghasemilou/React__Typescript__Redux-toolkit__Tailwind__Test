@@ -9,25 +9,31 @@ interface Props {
 }
 
 function Layout({children}: Props) {
+    //////////////////////////////////////////// H O O K S
     const location = useLocation();
-    const showSidebar = location.pathname === routes.home
 
+
+    //////////////////////////////////////////// C O N D I T I O N S
+    const isHome = location.pathname === routes.home
+
+
+    //////////////////////////////////////////// JSX
     return (
         <>
             <Header/>
-            <main className={styles.wrapper}>
-                <Sidebar visible={showSidebar} />
-                <div className={styles.main}>
-                    {children}
-                </div>
+            <main className={styles.main}>
+                {isHome && <Sidebar />}
+                {children}
             </main>
+
         </>
     );
 }
 
 export default Layout;
 
+
+//////////////////////////////////////////// S T Y L E S
 const styles = {
-    wrapper: `flex`,
-    main: `container py-16 px-8`
+    main: `flex`,
 }

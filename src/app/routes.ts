@@ -1,6 +1,4 @@
 const home = '/';
-// const category = 'category';
-// const singleCategory = category + '/:categoryName'
 const product = 'product';
 const singleProduct = product + '/:productId';
 const cart = 'cart';
@@ -10,7 +8,6 @@ const routes = {
     product,
     singleProduct,
     cart
-    // singleCategory,
 };
 
 export default routes;

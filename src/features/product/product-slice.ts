@@ -2,20 +2,14 @@ import {
     createEntityAdapter,
     createSlice,
     createAsyncThunk,
-    // createSelector
 } from '@reduxjs/toolkit';
 import type {Product, ProductId} from "app/types";
 import type {RootState} from "app/store";
 import ProductService from "features/product/product-service";
 
 export const productAdapter = createEntityAdapter<Product>();
-    // {
-    // Assume IDs are stored in a field other than `book.id`
-    // selectId: (book) => book.bookId,
-    // Keep the "all IDs" array sorted based on book titles
-    // sortComparer: (a, b) => a.title.localeCompare(b.title),
-// });
 
+////////////////////// T H U N K S
 export const fetchProducts = createAsyncThunk(
     'product/fetchProducts',
     async (limit: number|undefined) => {
@@ -32,15 +26,12 @@ export const fetchProduct = createAsyncThunk(
     }
 );
 
+
+////////////////////// S L I C E
 export const productSlice = createSlice({
     name: 'product',
     initialState: productAdapter.getInitialState(),
-    reducers: {
-        // productAdded: productAdapter.addOne,
-        // categoryReceived(state, action) {
-        //     categoryAdapter.setAll(state, action.payload)
-        // }
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(fetchProducts.fulfilled, (state, action) => {
@@ -53,6 +44,8 @@ export const productSlice = createSlice({
     },
 })
 
+
+////////////////////// S E L E C T O R S
 const productSelectors = productAdapter.getSelectors((state: RootState) => state[productSlice.name]);
 
 export const {
@@ -62,6 +55,3 @@ export const {
     selectIds: selectProductIds,
     selectTotal: selectProductTotal,
 } = productSelectors;
-
-// export const { productAdded } = productSlice.actions;
-

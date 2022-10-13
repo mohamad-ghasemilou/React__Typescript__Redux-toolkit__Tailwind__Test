@@ -4,8 +4,11 @@ import {useAppSelector} from "app/hooks";
 import {selectTotalCart} from "features/cart/cart-slice";
 
 function HeaderCart() {
+    //////////////////////////////////////////// H O O K S
     const totalCart = useAppSelector(selectTotalCart);
 
+
+    //////////////////////////////////////////// JSX
     return (
         <div className={styles.container}>
             <Link to={cartRoute()} className={styles.item}>cart</Link>
@@ -16,6 +19,8 @@ function HeaderCart() {
 
 export default HeaderCart;
 
+
+//////////////////////////////////////////// S T Y L E S
 const styles = {
     container: `relative`,
     item: `px-4 mx-8`,

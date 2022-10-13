@@ -7,7 +7,7 @@ interface Props {
 }
 
 function ProductCard({product}: Props) {
-    const {id, title, category, description, image, price} = product;
+    const {id, title, description, image, price} = product;
 
     return (
         <Link to={productRoute(id)} className={styles.product}>

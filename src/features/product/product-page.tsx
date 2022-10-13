@@ -1,21 +1,25 @@
-import {useState, useEffect} from 'react'
+import {useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import {useAppSelector, useAppDispatch} from 'app/hooks'
 import {selectProductById, fetchProduct} from 'features/product/product-slice'
 import AddToCart from "features/cart/add-to-cart";
-import {sizes} from "app/variables";
 import {homeRoute} from "app/routes";
 import {Link} from "react-router-dom";
 
 function ProductPage() {
+    //////////////////////////////////////////// H O O K S
     const dispatch = useAppDispatch()
     const {productId = 0} = useParams()
     const product = useAppSelector(state => selectProductById(state, productId ?? ''))
 
+
+    //////////////////////////////////////////// E F F E C T S
     useEffect(() => {
         dispatch(fetchProduct(Number(productId)))
     },[])
 
+
+    //////////////////////////////////////////// JSX
     return (
         <div className={styles.container}>
             <div className={styles.image}>
@@ -38,6 +42,8 @@ function ProductPage() {
 
 export default ProductPage;
 
+
+//////////////////////////////////////////// S T Y L E S
 const styles = {
     container: `flex max-h-full max-w-full`,
     title: `text-3xl mb-40`,
@@ -52,5 +58,3 @@ const styles = {
                 dark:focus:ring-blue-800`,
     count: `w-40 flex`
 }
-
-//todo: set height based on sizes.headerHeight

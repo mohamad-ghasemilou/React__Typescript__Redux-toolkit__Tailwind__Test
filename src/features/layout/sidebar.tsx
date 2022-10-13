@@ -1,20 +1,17 @@
 import Categories from 'features/category/categories';
 
-interface Props {
-    visible: boolean
-}
-
-function Sidebar({visible}: Props) {
+function Sidebar() {
     return (
-        <aside className={visible ? styles.container : styles.hide}>
+        <div className={styles.container}>
             <Categories />
-        </aside>
+        </div>
     );
 }
 
 export default Sidebar;
 
+
+//////////////////////////////////////////// S T Y L E S
 const styles = {
-    container: `w-60 pt-16 bg-green-500 flex justify-center`,
-    hide: `hidden`
+    container: `w-64 bg-green-500 flex justify-center fixed`,
 }

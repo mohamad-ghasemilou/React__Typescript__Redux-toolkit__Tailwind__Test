@@ -1,6 +1,6 @@
 import {useAppDispatch, useAppSelector} from "app/hooks";
 import type {ProductId as productIdType} from "app/types";
-import {addToCart, removeFromCart, selectProductsCartQuantity} from 'features/cart/cart-slice';
+import {increaseQuantity, decreaseQuantity, selectProductsCartQuantity} from 'features/cart/cart-slice';
 
 interface Props {
     productId: productIdType;
@@ -14,11 +14,11 @@ function AddToCart({productId} : Props) {
 
     //////////////////////////////////////////// M E T H O D S
     function addOne():void {
-        dispatch(addToCart(productId));
+        dispatch(increaseQuantity(productId));
     }
 
     function removeOne():void {
-        dispatch(removeFromCart(productId));
+        dispatch(decreaseQuantity(productId));
     }
 
 
